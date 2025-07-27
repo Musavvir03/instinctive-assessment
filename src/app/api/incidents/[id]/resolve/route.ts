@@ -3,11 +3,12 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
-export async function PATCH(
-  req: NextRequest,
-  { params }: { params: { id: string } }
-) {
-  const id = Number(params.id);
+export async function PATCH(request: NextRequest) {
+  // Extract the id from the URL
+  const url = new URL(request.url);
+  // The path is like /api/incidents/123/resolve, so get the second-to-last segment
+  const segments = url.pathname.split('/');
+  const id = Number(segments[segments.length - 2]);
   if (isNaN(id)) {
     return NextResponse.json({ error: 'Invalid ID' }, { status: 400 });
   }
