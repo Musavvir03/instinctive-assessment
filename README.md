@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# SecureSight Dashboard
 
-## Getting Started
+A fullstack technical assessment for SecureSight CCTV monitoring software.
 
-First, run the development server:
+## Tech Stack
+- Next.js 15 (App Router)
+- TypeScript
+- Tailwind CSS
+- Prisma ORM (SQLite for easy deploy)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Features
+- Navbar
+- Incident Player (left)
+- Incident List (right)
+- API routes: GET /api/incidents, PATCH /api/incidents/:id/resolve
+- Seed script for cameras and incidents
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Setup & Deployment
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+2. **Run database migrations:**
+   ```bash
+   npx prisma migrate deploy
+   npx prisma generate
+   ```
+3. **Seed the database:**
+   ```bash
+   npm run prisma:seed
+   ```
+4. **Start the dev server:**
+   ```bash
+   npm run dev
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Deploying to Vercel
+- This project is under 100MB and works with SQLite (file-based) for easy Vercel deploy.
+- Add any required environment variables (see `.env`).
 
-## Learn More
+## Tech Decisions
+- **Next.js App Router** for modern React and API routes.
+- **Prisma + SQLite** for simple, file-based DB deployable on Vercel.
+- **Tailwind CSS** for rapid, clean UI.
+- **Optimistic UI** for resolving incidents.
 
-To learn more about Next.js, take a look at the following resources:
+## If I had more time...
+- Add authentication and user roles.
+- Implement the optional SVG/Canvas timeline.
+- Add tests (unit, integration, e2e).
+- Improve accessibility and mobile responsiveness.
+- Add error handling and loading skeletons.
+- Add 3D front-end (React Three Fiber) as per extra credit.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+See the assessment prompt for more details.
